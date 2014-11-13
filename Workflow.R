@@ -11,7 +11,7 @@ mlxDataFileList <- doDataPrep("C:\\Users\\hnyberg\\Dropbox\\Doktorandsaker\\Warf
 ### Take a mlxtran file and create one for each data set
 ### Returns the subfolder name that contains the generated mlxtran files
 
-mlxModelPath<- doMlxtranPrep("WarfSAEM2comp_run2.mlxtran", 
+mlxModelPath <- doMlxtranPrep("WarfSAEM2comp_run2.mlxtran", 
                             "C:\\Users\\hnyberg\\Dropbox\\Doktorandsaker\\WarfarinSAEM\\Monolix\\SSE30_datasets",
                             mlxDataFileList)
 
