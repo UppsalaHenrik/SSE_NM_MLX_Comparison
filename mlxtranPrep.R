@@ -8,7 +8,7 @@
 #dataPath <- "C:/Users/hnyberg/Dropbox/Doktorandsaker/WarfarinSAEM/Monolix/SSE30_datasets"
 #i=5
 
-doMlxtranPrep <- function(mlxtranFileName, dataPath, mlxDataFileList){
+doMlxtranPrep <- function(mlxtranFileName, dataPath, mlxDataFileList, modelName){
   
   # Read in Mlxtran
   mlxtranFile <- readLines(mlxtranFileName)
@@ -41,7 +41,7 @@ doMlxtranPrep <- function(mlxtranFileName, dataPath, mlxDataFileList){
   # Create one mlxtran file for each dataset
   nDataSets <- length(mlxDataFileList)
   for(i in 1:nDataSets){
-    newMlxFileName <- paste("mlxestim", i, ".mlxtran", sep="")
+    newMlxFileName <- paste("mlxest", i, ".mlxtran", sep="")
     newMlxResFolderName <- paste("mlxestim", i, sep="")
     newMlxFile <- mlxtranFile
     newMlxFile[[descRowNumber]] <- newMlxFileName

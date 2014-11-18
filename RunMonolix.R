@@ -1,4 +1,4 @@
-#mlxModelPath <- "C:/Users/hnyberg/Dropbox/Doktorandsaker/WarfarinSAEM/Monolix/WarfSAEM2comp_run2_141113_101849"
+#mlxModelPath <- "C:/Users/hnyberg/Dropbox/Doktorandsaker/WarfarinSAEM/Monolix/WarfSAEM2comp_run2_141113_182028"
 #i <- 5
 
 doRunMlx <- function(mlxModelPath){  
@@ -26,11 +26,11 @@ doRunMlx <- function(mlxModelPath){
     command <- paste('Monolix2.bat -nowin -p ', mlxModelPath, '/', newMlxFileList[[i]], ' -f run', sep="")
     system(command)    
   }
+  
+  # Set the wd back to the user setting and return something
   setwd(userWD)
-  return()
+  return(newMlxFileList)
 }
-
-
 
 
 

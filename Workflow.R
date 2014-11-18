@@ -13,10 +13,12 @@ mlxDataFileList <- doDataPrep("C:\\Users\\hnyberg\\Dropbox\\Doktorandsaker\\Warf
 
 mlxModelPath <- doMlxtranPrep("WarfSAEM2comp_run2.mlxtran", 
                             "C:\\Users\\hnyberg\\Dropbox\\Doktorandsaker\\WarfarinSAEM\\Monolix\\SSE30_datasets",
-                            mlxDataFileList)
+                            mlxDataFileList, modelName="sim")
 
 
 ### Run all the generated mlxtran files
 ### 
 
-mlxResults <- doRunMlx(mlxModelPath)
+mlxFileList <- doRunMlx(mlxModelPath)
+
+
