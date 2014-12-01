@@ -1,14 +1,10 @@
 #mlxModelPath <- "C:/Users/hnyberg/Dropbox/Doktorandsaker/WarfarinSAEM/Monolix/WarfSAEM2comp_run2_141113_182028"
 #i <- 5
 
-doRunMlx <- function(mlxModelPath){  
-  
-  # Get the users working dir to be able to set it back, and set wd to the mlx model folder  
-  userWD <- getwd()
-  setwd(mlxModelPath)
+doRunMlx <- function(mlxModelName){  
   
   # List the files in that dir and make sure that the order is correct: 10 comes after 9 rather than after 1
-  newModels <- list.files(, pattern="^mlxestim")
+  newModels <- list.files(, pattern=paste0("^", mlxModelName)
   newFileNum <- as.numeric(gsub('^mlxestim([0-9]*)\\.mlxtran$','\\1',newModels))
   newMlxFileList <- newModels[order(newFileNum)]
   
@@ -27,8 +23,6 @@ doRunMlx <- function(mlxModelPath){
     system(command)    
   }
   
-  # Set the wd back to the user setting and return something
-  setwd(userWD)
   return(newMlxFileList)
 }
 
