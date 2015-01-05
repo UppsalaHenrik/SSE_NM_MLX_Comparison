@@ -1,14 +1,16 @@
-#setwd("C:\\Users\\hnyberg\\Dropbox\\Doktorandsaker\\WarfarinSAEM\\Monolix\\WarfSAEM2comp_run2_141113_182028\\mlxestim1")
+#setwd("C:\\Users\\hnyberg\\Dropbox\\Doktorandsaker\\WarfarinSAEM\\Monolix\\MLX_SSE_141205_141826")
+#x <- estFiles[[2]]
 
 
-
-readMlxParams <- function(mlxModelPath){
+readMlxParams <- function(mlxModelList){
 
   #Get all of the file names, give the full path to all files
   files <- list.files(recursive = TRUE, full.names = TRUE)
   #Just keep the estimates files
   estFiles <- grep("estimates.txt$", files, value = TRUE)
-
+  
+  # Pick out the model names from the list
+  mlxModelNames <- sub("\\.[[:alnum:]]+$", "", basename(as.character(mlxModelList)))
 
   ## Loop around all of the estimates files
   allRows <- lapply(estFiles, function(x){
@@ -22,9 +24,9 @@ readMlxParams <- function(mlxModelPath){
     # Add a column name for the folder
     colNames <- c("Model", colNames)
   
-    # remove the ./ from the file path. This is dangerous. When it falls over look here first and blame Aimee:)
-    x <- gsub("./", "", dirname(x))
-  
+    # Pick up the 
+    x <- mlxModelNames[sapply(mlxModelNames, grepl, x)]
+    
     # build the data that will be in the row, quote the name so that it retains the quotes in the eval
     rows <- c(quote(x), data$parameter)
   
