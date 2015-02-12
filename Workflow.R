@@ -20,10 +20,16 @@ repeatSSEinMonolix <- function(dataPath, mlxModelList){
   # Combine the initial estimates into one 
   initEsts <- do.call("rbind", initEstList)
   
+  # Run all the runs!
   lapply(mlxModelList, FUN = function(x) {doRunMlx(x) })
   
-  finalEsts <- readMlxParams(mlxModelList)
+  #Read in the results
+  rawResults <- readMlxRun(mlxModelList)
+
+  # Plot the results in boxplots
+  boxPlotResults(rawResults, initEsts)  
   
+  setwd(userWD)
   
-  return(finalEsts)
+  return(rawResults)
 }

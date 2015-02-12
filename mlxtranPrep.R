@@ -1,4 +1,6 @@
-
+# mlxtranFileName <- mlxModelList[1]
+#
+#
 
 doMlxtranPrep <- function(mlxtranFileName, dataSetList){
   
@@ -21,16 +23,19 @@ doMlxtranPrep <- function(mlxtranFileName, dataSetList){
   x <- initialValuesRowsList
 
     # Remove the pesky whitespace at the start, the equals sign, 
-    # any commas, and any specific   
+    # any commas, and any other things 
   x <- gsub("=", " ", x)
   x <- gsub("  ", "", x)
   x <- gsub(",", "", x)
   x <- gsub('\\s.meth.{2,}', "", x)
+  x <- gsub("pop", "", x)
+  x <- gsub("_", "", x)
+  x <- gsub("y1", "", x)
   
     # Split up the string based on single white space between the bits.
   x <- strsplit(x, " ")
   
-    # Put the 
+  # Put them together 
   
   colNames <- c("Model", do.call("rbind", x)[,1])
   
@@ -41,7 +46,8 @@ doMlxtranPrep <- function(mlxtranFileName, dataSetList){
   
   # evaluate the call to data.frame
   initialEstimates <- eval(parse(text = callString))
-  
+
+
 ### Edit and write out the model file
 
   # Add a descriptive comment on the first row
@@ -68,7 +74,7 @@ doMlxtranPrep <- function(mlxtranFileName, dataSetList){
     newMlxFileName <- paste0(mlxtranFileNameNoExt, "_", i, ".mlxtran")
     newMlxResFolderName <- paste0(mlxtranFileNameNoExt, i)
     newMlxFile <- mlxtranFile
-    newMlxFile[[descRowNumber]] <- newMlxFileName
+    newMlxFile[[descRowNumber]] <- names(mlxtranFileName)
     newMlxFile[[dataPathRowNumber]] <- paste0('    path = "%MLXPROJECT%/Data/', '",')
     newMlxFile[[dataFileRowNumber]] <- paste0('    file ="', dataSetList[[i]], '",')
     newMlxFile[[resFolderRowNumber]] <- paste0('        resultFolder = "%MLXPROJECT%/', newMlxResFolderName, '/"},')

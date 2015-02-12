@@ -13,7 +13,8 @@ doDataPrep <- function(dataPath){
   dataSetList <- dataSets[order(fileNum)]
 
   # Create a data folder
-  dir.create("Data")
+  dataFolderName <- "Data"
+  dir.create(dataFolderName)
   
   # For each data file in the previously defined list
   nDataSets <- length(dataSetList)
@@ -23,7 +24,7 @@ doDataPrep <- function(dataPath){
   }
   
   # Return a correctly ordered list of the created data sets
-  newDataSets <- list.files(dataPath, pattern="^mlx")
+  newDataSets <- list.files(dataFolderName, pattern="^mlx")
   newFileNum <- as.numeric(gsub('^mlx_mc-sim-([0-9]*)\\.dat$','\\1',newDataSets))
   newDataSetList <- newDataSets[order(fileNum)]
   return(newDataSetList)

@@ -7,7 +7,7 @@ doRunMlx <- function(mlxModel){
   
   # List the files in that dir and make sure that the order is correct: 10 comes after 9 rather than after 1
   newModels <- list.files(, pattern=paste0("^", mlxModelNameNoExt))
-  newFileNum <- as.numeric(gsub(paste0("^", mlxModelNameNoExt, '([0-9]*)\\.mlxtran$'), '\\1',newModels))
+  newFileNum <- as.numeric(gsub(paste0("^", mlxModelNameNoExt, "_", '([0-9]*)\\.mlxtran$'), '\\1',newModels))
   newMlxFileList <- newModels[order(newFileNum)]
   newMlxFilePaths <- normalizePath(newMlxFileList)
   
